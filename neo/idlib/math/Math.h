@@ -29,12 +29,14 @@ If you have questions concerning this license or the applicable additional terms
 #ifndef __MATH_MATH_H__
 #define __MATH_MATH_H__
 
-#ifdef MACOS_X
+#if defined(__ppc__)
 // for square root estimate instruction
 #include <ppc_intrinsics.h>
+#endif
+
 // for FLT_MIN
 #include <float.h>
-#endif
+
 /*
 ===============================================================================
 

@@ -29,7 +29,9 @@ If you have questions concerning this license or the applicable additional terms
 #include "../../idlib/precompiled.h"
 #include <Carbon/Carbon.h>
 #include "PreferencesDialog.h"
+#if 0 // jeremiah sypult disabled PickMonitor
 #include "PickMonitor.h"
+#endif
 #include <list>
 #include <set>
 
@@ -648,9 +650,11 @@ static pascal OSStatus PrefHandler( EventHandlerCallRef inHandler, EventRef inEv
 
 		case kCmdChooseMonitors:
 		{
+#if 0 // jeremiah sypult disabled PickMonitor
 			PickMonitor((DisplayIDType*)&prefInfo->prefDisplayID, prefInfo->window);
 			// Adjust resolutions, refresh rates for potentially new display ID
 			AdjustDisplayControls(prefInfo);
+#endif
 			break;
 		}
 
@@ -762,8 +766,11 @@ OSStatus CreateGameDisplayPreferencesDialog(const GameDisplayInfo *inGDInfo,
 	
 	
 	// Disable the "choose monitor" button if we've only got one to pick from
-	
+#if 0 // jeremiah sypult disabled PickMonitor
 	prefInfo.multiMonitor = CanUserPickMonitor();
+#else
+	prefInfo.multiMonitor = false;
+#endif
 	
 	if (!prefInfo.multiMonitor)
 	{

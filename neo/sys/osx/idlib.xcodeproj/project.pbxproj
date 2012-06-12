@@ -241,11 +241,10 @@
 		81C858C20912AD510095BC33 /* Timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C857C60912AD0D0095BC33 /* Timer.h */; };
 		81C858C30912AD510095BC33 /* Token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81C857C70912AD0D0095BC33 /* Token.cpp */; };
 		81C858C40912AD510095BC33 /* Token.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C857C80912AD0D0095BC33 /* Token.h */; };
-		81C858D90912ADD80095BC33 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C858D80912ADD80095BC33 /* OpenGL.framework */; };
-		81C858DA0912ADD80095BC33 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C858D80912ADD80095BC33 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27672FC31587E99F002ED6BE /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
 		81C857470912AD020095BC33 /* BitMsg.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = BitMsg.cpp; path = ../../idlib/BitMsg.cpp; sourceTree = SOURCE_ROOT; };
 		81C8574A0912AD0D0095BC33 /* Base64.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = Base64.cpp; path = ../../idlib/Base64.cpp; sourceTree = SOURCE_ROOT; };
 		81C8574B0912AD0D0095BC33 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Base64.h; path = ../../idlib/Base64.h; sourceTree = SOURCE_ROOT; };
@@ -364,7 +363,6 @@
 		81C857C70912AD0D0095BC33 /* Token.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = Token.cpp; path = ../../idlib/Token.cpp; sourceTree = SOURCE_ROOT; };
 		81C857C80912AD0D0095BC33 /* Token.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = Token.h; path = ../../idlib/Token.h; sourceTree = SOURCE_ROOT; };
 		81C858490912AD370095BC33 /* libidlib_nopic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libidlib_nopic.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		81C858D80912ADD80095BC33 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		D2AAC046055464E500DB518D /* libidlib_pic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libidlib_pic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -373,7 +371,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C858DA0912ADD80095BC33 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,7 +378,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C858D90912ADD80095BC33 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +389,6 @@
 			children = (
 				08FB7795FE84155DC02AAC07 /* Source */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
-				81C858D80912ADD80095BC33 /* OpenGL.framework */,
 			);
 			name = idlib;
 			sourceTree = "<group>";
@@ -540,6 +535,7 @@
 				81C8579E0912AD0D0095BC33 /* Lcp.cpp */,
 				81C8579F0912AD0D0095BC33 /* Lcp.h */,
 				81C857A00912AD0D0095BC33 /* Math.cpp */,
+				27672FC31587E99F002ED6BE /* Math.h */,
 				81C857A10912AD0D0095BC33 /* Matrix.cpp */,
 				81C857A20912AD0D0095BC33 /* Matrix.h */,
 				81C857A30912AD0D0095BC33 /* Ode.cpp */,
@@ -914,10 +910,7 @@
 		81C857240912ACE80095BC33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -925,10 +918,12 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /usr/local/lib;
 				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = idlib_pic;
 				ZERO_LINK = YES;
@@ -938,16 +933,15 @@
 		81C857250912ACE80095BC33 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline",
 					"-finline-limit=1000",
@@ -984,7 +978,7 @@
 					"$(OTHER_CFLAGS)",
 					"-fpermissive",
 				);
-				SDKROOT = macosx10.5;
+				SDKROOT = "";
 				USE_SEPARATE_HEADERMAPS = YES;
 				VALID_ARCHS = i386;
 			};
@@ -1008,7 +1002,7 @@
 					"$(OTHER_CFLAGS)",
 					"-fpermissive",
 				);
-				SDKROOT = macosx10.5;
+				SDKROOT = "";
 				USE_SEPARATE_HEADERMAPS = YES;
 				VALID_ARCHS = i386;
 			};
@@ -1017,16 +1011,14 @@
 		81C858C70912AD610095BC33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INSTALL_PATH = "$(HOME)/lib";
 				LIBRARY_STYLE = STATIC;
 				OTHER_CFLAGS = "";
@@ -1034,6 +1026,7 @@
 				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = idlib_nopic;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1046,15 +1039,13 @@
 		81C858C80912AD610095BC33 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				LIBRARY_STYLE = STATIC;
 				OTHER_CFLAGS = (
 					"-finline",
@@ -1068,6 +1059,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = idlib_nopic;
+				SDKROOT = macosx;
 				SYMROOT = build;
 				ZERO_LINK = NO;
 			};
