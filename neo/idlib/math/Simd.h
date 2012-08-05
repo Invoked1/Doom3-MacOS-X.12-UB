@@ -81,7 +81,9 @@ class idJointQuat;
 class idJointMat;
 struct dominantTri_s;
 
-const int MIXBUFFER_SAMPLES = 4096;
+/* mma: decreased default buffer size from 4096 to 2048 as my external sound
+        card (the Apogee Duet) only supports a maximum of 2400 */
+const int MIXBUFFER_SAMPLES = 2048;
 
 typedef enum {
 	SPEAKER_LEFT = 0,
