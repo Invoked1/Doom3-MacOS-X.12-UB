@@ -788,7 +788,7 @@
 					"-fpermissive",
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = game;
+				PRODUCT_NAME = "game-d3xp";
 				ZERO_LINK = YES;
 			};
 			name = Debug;
@@ -853,7 +853,7 @@
 					"-fpermissive",
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = game;
+				PRODUCT_NAME = "game-d3xp";
 			};
 			name = Default;
 		};
@@ -870,7 +870,7 @@
 					GAME_DLL,
 					__WITH_PB__,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = "";
 			};
 			name = Debug;
@@ -888,7 +888,7 @@
 					GAME_DLL,
 					__WITH_PB__,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = (
 					"-finline",
 					"-finline-limit=1000",
@@ -912,7 +912,7 @@
 					_D3XP,
 					CTF,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = "";
 			};
 			name = Default;

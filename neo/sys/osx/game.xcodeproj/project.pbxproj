@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		81225A3A0912C3DB005D34B9 /* libidlib_pic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81225A210912C3A4005D34B9 /* libidlib_pic.a */; };
+		65552D0E15CED4CB00E195EA /* libidlib_pic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81225A210912C3A4005D34B9 /* libidlib_pic.a */; };
 		81225AC40912C42F005D34B9 /* PlayerIcon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81225A3B0912C42F005D34B9 /* PlayerIcon.cpp */; };
 		81225AC50912C42F005D34B9 /* Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81225A3C0912C42F005D34B9 /* Actor.cpp */; };
 		81225AC60912C42F005D34B9 /* Actor.h in Headers */ = {isa = PBXBuildFile; fileRef = 81225A3D0912C42F005D34B9 /* Actor.h */; };
@@ -142,6 +142,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		65552D0C15CED4C700E195EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81225A1B0912C3A4005D34B9 /* idlib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = idlib_pic;
+		};
 		81225A200912C3A4005D34B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81225A1B0912C3A4005D34B9 /* idlib.xcodeproj */;
@@ -155,13 +162,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 81C858490912AD370095BC33;
 			remoteInfo = idlib_nopic;
-		};
-		81225A380912C3C8005D34B9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81225A1B0912C3A4005D34B9 /* idlib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D;
-			remoteInfo = idlib_pic;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -307,7 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81225A3A0912C3DB005D34B9 /* libidlib_pic.a in Frameworks */,
+				65552D0E15CED4CB00E195EA /* libidlib_pic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,7 +611,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				81225A390912C3C8005D34B9 /* PBXTargetDependency */,
+				65552D0D15CED4C700E195EA /* PBXTargetDependency */,
 			);
 			name = game;
 			productName = game;
@@ -749,10 +749,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		81225A390912C3C8005D34B9 /* PBXTargetDependency */ = {
+		65552D0D15CED4C700E195EA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = idlib_pic;
-			targetProxy = 81225A380912C3C8005D34B9 /* PBXContainerItemProxy */;
+			targetProxy = 65552D0C15CED4C700E195EA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -776,21 +776,21 @@
 					GAME_DLL,
 					__WITH_PB__,
 				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /usr/local/lib;
+				LD_NO_PIE = NO;
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
 				MAIN_CPP_DEFINES = _DEBUG;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-fpermissive",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = game;
-				ZERO_LINK = YES;
+				ZERO_LINK = NO;
 			};
 			name = Debug;
 		};
@@ -801,6 +801,7 @@
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_ONE_BYTE_BOOL = YES;
@@ -811,10 +812,10 @@
 					GAME_DLL,
 					__WITH_PB__,
 				);
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				LD_NO_PIE = NO;
 				LIBRARY_STYLE = DYNAMIC;
 				MACH_O_TYPE = mh_dylib;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline",
 					"-finline-limit=1000",
@@ -827,7 +828,6 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = game;
-				SYMROOT = build;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -846,6 +846,7 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = "";
 				VALID_ARCHS = i386;
 			};
@@ -864,6 +865,7 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline",
 					"-finline-limit=1000",

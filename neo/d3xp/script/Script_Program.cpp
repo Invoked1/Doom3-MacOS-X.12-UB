@@ -1867,7 +1867,7 @@ void idProgram::FreeData( void ) {
 	// free the defs
 	varDefs.DeleteContents( true );
 	varDefNames.DeleteContents( true );
-	varDefNameHash.Free();
+//	varDefNameHash.Free();
 
 	returnDef		= NULL;
 	returnStringDef = NULL;

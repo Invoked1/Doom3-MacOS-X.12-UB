@@ -918,15 +918,14 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /usr/local/lib;
 				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = idlib_pic;
-				ZERO_LINK = YES;
+				ZERO_LINK = "";
 			};
 			name = Debug;
 		};
@@ -939,9 +938,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				LIBRARY_STYLE = STATIC;
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-finline",
 					"-finline-limit=1000",
@@ -954,8 +952,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = idlib_pic;
-				SYMROOT = build;
-				ZERO_LINK = NO;
+				ZERO_LINK = "";
 			};
 			name = Release;
 		};
@@ -965,6 +962,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_MODEL_TUNING = "";
 				GCC_ONE_BYTE_BOOL = YES;
 				GCC_OPTIMIZATION_LEVEL = 1;
@@ -972,8 +970,10 @@
 					"$(MAIN_CPP_DEFINES)",
 					MACOS_X,
 				);
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				MAIN_CPP_DEFINES = _DEBUG;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-fpermissive",
@@ -981,6 +981,7 @@
 				SDKROOT = "";
 				USE_SEPARATE_HEADERMAPS = YES;
 				VALID_ARCHS = i386;
+				ZERO_LINK = "";
 			};
 			name = Debug;
 		};
@@ -990,6 +991,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_MODEL_TUNING = "";
 				GCC_ONE_BYTE_BOOL = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -997,7 +999,9 @@
 					"$(MAIN_CPP_DEFINES)",
 					MACOS_X,
 				);
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-fpermissive",
@@ -1005,6 +1009,7 @@
 				SDKROOT = "";
 				USE_SEPARATE_HEADERMAPS = YES;
 				VALID_ARCHS = i386;
+				ZERO_LINK = "";
 			};
 			name = Release;
 		};
@@ -1018,7 +1023,6 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INSTALL_PATH = "$(HOME)/lib";
 				LIBRARY_STYLE = STATIC;
 				OTHER_CFLAGS = "";
@@ -1026,13 +1030,12 @@
 				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = idlib_nopic;
-				SDKROOT = macosx;
-				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",
 				);
+				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
@@ -1045,7 +1048,6 @@
 				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				LIBRARY_STYLE = STATIC;
 				OTHER_CFLAGS = (
 					"-finline",
@@ -1059,9 +1061,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = idlib_nopic;
-				SDKROOT = macosx;
-				SYMROOT = build;
-				ZERO_LINK = NO;
+				ZERO_LINK = YES;
 			};
 			name = Release;
 		};
