@@ -238,7 +238,7 @@ extern void CL_Quit_f(void);
 
 - (void)quakeMain
 {
-    NSAutoreleasePool *pool;
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     int argc = 0;
     const char *argv[MAX_ARGC];
     NSProcessInfo *processInfo;
@@ -247,8 +247,6 @@ extern void CL_Quit_f(void);
     //const char *cddir;
     //NSFileManager *defaultManager;
     //bool tryAgain;
-
-    pool = [[NSAutoreleasePool alloc] init];
 
     [NSApp setServicesProvider:self];
 
@@ -316,7 +314,7 @@ extern void CL_Quit_f(void);
     }
 */
 
-	//Sys_FPU_EnableExceptions( TEST_FPU_EXCEPTIONS );
+	
 
 	Posix_EarlyInit( );
 
@@ -328,6 +326,8 @@ extern void CL_Quit_f(void);
 	if ( [self checkDVD] == FALSE) {
 		common->Quit();
 	}
+#else
+    Sys_FPU_EnableExceptions( TEST_FPU_EXCEPTIONS );
 #endif
 	
 	// need strncmp, can't use idlib before init
@@ -350,14 +350,8 @@ extern void CL_Quit_f(void);
         OTNodeStart(RootNode);
 #endif
 
-		// maintain exceptions in case system calls are turning them off (is that needed)
-		//Sys_FPU_EnableExceptions( TEST_FPU_EXCEPTIONS );
-
 		common->Frame();
-
-        // We should think about doing this less frequently than every frame
-        [pool release];
-        pool = [[NSAutoreleasePool alloc] init];
+        
 #ifdef OMNI_TIMER
         OTNodeStop(RootNode);
 #endif
