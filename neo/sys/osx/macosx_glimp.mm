@@ -355,6 +355,11 @@ static bool CreateGameWindow(  glimpParms_t parms ) {
         common->Printf( "CreateGameWindow: fullscreen window's contents scaled from %dx%d -> %.0fx%.0f.\n",
                        parms.width, parms.height, r.size.width, r.size.height );
     }
+
+    /* Release the old window before creating a new one. This gets rid of the
+       grey area if resizing to a smaller size in windowed mode. */
+    if ( glw_state.window != NULL )
+        [glw_state.window release];
     
     glw_state.window = [NSWindow alloc];
     [glw_state.window initWithContentRect:windowRect
