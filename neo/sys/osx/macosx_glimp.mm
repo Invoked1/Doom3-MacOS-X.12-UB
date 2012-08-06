@@ -55,6 +55,7 @@ CGDisplayErr		Sys_CaptureActiveDisplays(void);
 
 glwstate_t glw_state;
 static bool isHidden = false;
+static bool isFullscreen;
 
 @interface NSOpenGLContext (CGLContextAccess)
 - (CGLContextObj) cglContext;
@@ -321,6 +322,7 @@ static bool CreateGameWindow(  glimpParms_t parms ) {
     NSScreen*		 screen;
     NSRect           windowRect;
     NSUInteger       windowStyleMask;
+    NSInteger        windowLevel;
     int				 displayIndex;
     int				 displayCount;
 
@@ -333,8 +335,9 @@ static bool CreateGameWindow(  glimpParms_t parms ) {
     }
 
     NSRect r = [screen frame];
+    isFullscreen = parms.fullScreen;
 
-    if ( !parms.fullScreen ) {
+    if ( !isFullscreen ) {
         windowRect = NSMakeRect(((short)r.size.width - parms.width) / 2,
                                 ((short)r.size.height - parms.height) / 2,
                                 parms.width, parms.height);
@@ -356,10 +359,8 @@ static bool CreateGameWindow(  glimpParms_t parms ) {
                        parms.width, parms.height, r.size.width, r.size.height );
     }
 
-    /* Release the old window before creating a new one. This gets rid of the
-       grey area if resizing to a smaller size in windowed mode. */
-    if ( glw_state.window != NULL )
-        [glw_state.window release];
+    /* the old window should have been released by GL_Shutdown()! */
+    assert( glw_state.window == NULL );
     
     glw_state.window = [NSWindow alloc];
     [glw_state.window initWithContentRect:windowRect
@@ -560,7 +561,7 @@ void GLimp_Shutdown( void ) {
 	//    }
 
 	if (glw_state.window) {
-		[glw_state.window release];
+		[glw_state.window close]; /* also releases */
 		glw_state.window = nil;
 	}
 
