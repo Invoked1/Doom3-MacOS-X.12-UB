@@ -50,7 +50,6 @@ static idCVar r_screen( "r_screen", "-1", CVAR_ARCHIVE | CVAR_INTEGER, "which di
 
 static void				GLW_InitExtensions( void );
 static bool				CreateGameWindow( glimpParms_t parms );
-static unsigned long	Sys_QueryVideoMemory();
 CGDisplayErr		Sys_CaptureActiveDisplays(void);
 
 glwstate_t glw_state;
@@ -257,6 +256,24 @@ static void ReleaseAllDisplays() {
 	}
 }
 
+#define DEFAULT_FULLSCREEN_LEVEL    NSMainMenuWindowLevel+1
+#define DEFAULT_WINDOW_LEVEL        NSNormalWindowLevel
+
+void Sys_DefaultWindowLevel() {
+    if ( isFullscreen ) {
+        [glw_state.window setLevel:DEFAULT_FULLSCREEN_LEVEL];
+    } else {
+        [glw_state.window setLevel:DEFAULT_WINDOW_LEVEL];
+    }
+}
+
+/* Called when the "exit key" (command) is entered. */
+void Sys_ReduceWindowLevel() {
+    if ( isFullscreen ) {
+        [glw_state.window setLevel:DEFAULT_WINDOW_LEVEL];
+    }
+}
+
 /*
 =================
 CreateGameWindow
@@ -373,8 +390,8 @@ static bool CreateGameWindow(  glimpParms_t parms ) {
     [glw_state.window orderFront: nil];
 
     // hide the menu bar when in full screen
-    [glw_state.window setLevel:NSMainMenuWindowLevel+1];
-
+    Sys_DefaultWindowLevel();
+    
     // Always get mouse moved events (if mouse support is turned off (rare)
     // the event system will filter them out.
     [glw_state.window setAcceptsMouseMovedEvents: YES];

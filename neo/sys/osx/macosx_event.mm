@@ -391,24 +391,28 @@ void processEvent( NSEvent *event ) {
 	case NSLeftMouseUp:
 	case NSRightMouseDown:
 	case NSRightMouseUp:
-		//NSLog( @"ignore simple mouse event %@", event );
-		return;		
+        if ( !mouseActive ) {
+            NSLog( @"Clicked into the application window, capturing mouse." );
+            Sys_DefaultWindowLevel();
+            IN_ActivateMouse();
+        }
+		return;
 	case NSMouseMoved:
 	case NSLeftMouseDragged:
 	case NSRightMouseDragged:
-		processMouseMovedEvent( event );
+        processMouseMovedEvent( event );
 		return;
 	case NSKeyDown:
-		// Send ALL command key-ups to Quake, but not command key-downs, otherwise if the user hits a key, presses command, and lets up on the key, the key-up won't register.
-		if ( [ event modifierFlags ] & NSCommandKeyMask ) {
-			NSLog( @"command key up ignored: %@", event );
-			break;
-		}
 	case NSKeyUp:
 		OSX_ProcessKeyEvent( event, eventType == NSKeyDown );
 		return;
 	case NSFlagsChanged:
-		processFlagsChangedEvent( event );
+        if ( [ event modifierFlags ] & NSCommandKeyMask ) {
+            Sys_ReduceWindowLevel();
+            IN_DeactivateMouse();
+        } else {
+            processFlagsChangedEvent( event );
+        }
 		return;
 	case NSSystemDefined:
 		processSystemDefinedEvent( event );
@@ -502,7 +506,7 @@ void IN_ActivateMouse( void ) {
         // Make sure that if window moved we don't hose the user...
         Sys_UpdateWindowMouseInputRect();
     }
-    Sys_LockMouseInInputRect( inputRect );
+//    Sys_LockMouseInInputRect( inputRect );
     CGDisplayHideCursor( Sys_DisplayToUse() );
     mouseActive = true;
 }

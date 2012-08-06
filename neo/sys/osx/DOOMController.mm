@@ -727,28 +727,7 @@ returns in megabytes
 ================
 */
 int Sys_GetVideoRam( void ) {
-	unsigned int i;
-	CFTypeRef typeCode;
-	long vramStorage = 64;
-	const short MAXDISPLAYS = 8;
-	CGDisplayCount displayCount;
-	io_service_t dspPorts[MAXDISPLAYS];
-	CGDirectDisplayID displays[MAXDISPLAYS];
-
-	CGGetOnlineDisplayList( MAXDISPLAYS, displays, &displayCount );
-	
-	for ( i = 0; i < displayCount; i++ ) {
-		if ( Sys_DisplayToUse() == displays[i] ) {
-			dspPorts[i] = CGDisplayIOServicePort(displays[i]);
-			typeCode = IORegistryEntryCreateCFProperty( dspPorts[i], CFSTR("IOFBMemorySize"), kCFAllocatorDefault, kNilOptions );
-			if( typeCode && CFGetTypeID( typeCode ) == CFNumberGetTypeID() ) {
-				CFNumberGetValue( ( CFNumberRef )typeCode, kCFNumberSInt32Type, &vramStorage );
-				vramStorage /= (1024*1024);
-			}
-		}
-	}
-
-	return vramStorage;
+    return Sys_QueryVideoMemory() / (1024 * 1024);
 }
 
 bool OSX_GetCPUIdentification( int& cpuId, bool& oldArchitecture )
