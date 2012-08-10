@@ -247,6 +247,20 @@
 			remoteGlobalIDString = 81C858480912AD370095BC33;
 			remoteInfo = idlib_nopic;
 		};
+		6578C28F15D580CA00867FFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6578C28715D580CA00867FFD /* d3xp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC0630554660B00DB518D;
+			remoteInfo = "game-d3xp";
+		};
+		6578C29315D5829E00867FFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6578C28715D580CA00867FFD /* d3xp.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC0620554660B00DB518D;
+			remoteInfo = "game-d3xp";
+		};
 		8122597F0912BF1D005D34B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 812259790912BF1D005D34B9 /* idlib.xcodeproj */;
@@ -306,6 +320,7 @@
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		6578C28715D580CA00867FFD /* d3xp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = d3xp.xcodeproj; sourceTree = "<group>"; };
 		8122565F0912BC78005D34B9 /* snd_efxfile.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = snd_efxfile.cpp; path = ../../sound/snd_efxfile.cpp; sourceTree = SOURCE_ROOT; };
 		812256620912BC78005D34B9 /* GEWindowWrapper_stub.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = GEWindowWrapper_stub.cpp; path = ../../tools/guied/GEWindowWrapper_stub.cpp; sourceTree = SOURCE_ROOT; };
 		812256630912BC79005D34B9 /* edit_stub.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = edit_stub.cpp; path = ../../tools/edit_stub.cpp; sourceTree = SOURCE_ROOT; };
@@ -719,6 +734,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				812259790912BF1D005D34B9 /* idlib.xcodeproj */,
 				812259890912BF38005D34B9 /* oggVorbis.xcodeproj */,
+				6578C28715D580CA00867FFD /* d3xp.xcodeproj */,
 				81225B840912C731005D34B9 /* game.xcodeproj */,
 			);
 			name = Doom3;
@@ -745,6 +761,14 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6578C28815D580CA00867FFD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6578C29015D580CA00867FFD /* game.dylib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		812256420912BC26005D34B9 /* Sources */ = {
@@ -1300,6 +1324,7 @@
 				65552D1015CED72B00E195EA /* PBXTargetDependency */,
 				812259910912BF43005D34B9 /* PBXTargetDependency */,
 				81225B8D0912C73C005D34B9 /* PBXTargetDependency */,
+				6578C29415D5829E00867FFD /* PBXTargetDependency */,
 			);
 			name = "Doom 3";
 			productInstallPath = "$(HOME)/Applications";
@@ -1330,6 +1355,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 6578C28815D580CA00867FFD /* Products */;
+					ProjectRef = 6578C28715D580CA00867FFD /* d3xp.xcodeproj */;
+				},
+				{
 					ProductGroup = 81225B850912C731005D34B9 /* Products */;
 					ProjectRef = 81225B840912C731005D34B9 /* game.xcodeproj */;
 				},
@@ -1350,6 +1379,14 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		6578C29015D580CA00867FFD /* game.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = game.dylib;
+			path = "game-d3xp.dylib";
+			remoteRef = 6578C28F15D580CA00867FFD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		812259800912BF1D005D34B9 /* libidlib_pic.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1627,6 +1664,11 @@
 			name = idlib_nopic;
 			targetProxy = 65552D0F15CED72B00E195EA /* PBXContainerItemProxy */;
 		};
+		6578C29415D5829E00867FFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "game-d3xp";
+			targetProxy = 6578C29315D5829E00867FFD /* PBXContainerItemProxy */;
+		};
 		812259910912BF43005D34B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = oggVorbis_nopic;
@@ -1704,6 +1746,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../curl/lib\"";
+				MAIN_CPP_DEFINES = _DEBUG;
 				PREBINDING = NO;
 				PRODUCT_NAME = "Doom 3";
 				SDKROOT = "";

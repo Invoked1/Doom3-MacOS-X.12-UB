@@ -811,7 +811,9 @@ const char *idFileSystemLocal::BuildOSPath( const char *base, const char *game, 
 
 		if ( testPath.HasUpper() ) {
 
+#ifdef _DEBUG
 			common->Warning( "Non-portable: path contains uppercase characters: %s", testPath.c_str() );
+#endif
 
 			// attempt a fixup on the fly
 			if ( fs_caseSensitiveOS.GetBool() ) {
@@ -2850,15 +2852,6 @@ void idFileSystemLocal::Init( void ) {
 	common->StartupVariable( "fs_copyfiles", false );
 	common->StartupVariable( "fs_restrict", false );
 	common->StartupVariable( "fs_searchAddons", false );
-
-#if !ID_ALLOW_D3XP
-	if ( fs_game.GetString()[0] && !idStr::Icmp( fs_game.GetString(), "d3xp" ) ) {
-		 fs_game.SetString( NULL );
-	}
-	if ( fs_game_base.GetString()[0] && !idStr::Icmp( fs_game_base.GetString(), "d3xp" ) ) {
-		  fs_game_base.SetString( NULL );
-	}
-#endif	
 	
 	if ( fs_basepath.GetString()[0] == '\0' ) {
 		fs_basepath.SetString( Sys_DefaultBasePath() );
@@ -3992,22 +3985,7 @@ bool idFileSystemLocal::HasD3XP( void ) {
 	} else if ( d3xp == 1 ) {
 		return true;
 	}
-	
-#if 0
-	// check for a d3xp directory with a pk4 file
-	// copied over from ListMods - only looks in basepath
-	ListOSFiles( fs_basepath.GetString(), "/", dirs );
-	for ( i = 0; i < dirs.Num(); i++ ) {
-		if ( dirs[i].Icmp( "d3xp" ) == 0 ) {
-			gamepath = BuildOSPath( fs_basepath.GetString(), dirs[ i ], "" );
-			ListOSFiles( gamepath, ".pk4", pk4s );
-			if ( pk4s.Num() ) {
-				d3xp = 1;
-				return true;
-			}
-		}
-	}
-#elif ID_ALLOW_D3XP
+    
 	// check for d3xp's d3xp/pak000.pk4 in any search path
 	// checking wether the pak is loaded by checksum wouldn't be enough:
 	// we may have a different fs_game right now but still need to reply that it's installed
@@ -4025,9 +4003,7 @@ bool idFileSystemLocal::HasD3XP( void ) {
 			return true;
 		}
 	}
-#endif
 
-#if ID_ALLOW_D3XP
 	// if we didn't find a pk4 file then the user might have unpacked so look for default.cfg file
 	// that's the old way mostly used during developement. don't think it hurts to leave it there
 	ListOSFiles( fs_basepath.GetString(), "/", dirs );
@@ -4043,7 +4019,7 @@ bool idFileSystemLocal::HasD3XP( void ) {
 			}
 		}
 	}
-#endif
+    
 	d3xp = -1;
 	return false;
 }
