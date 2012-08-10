@@ -627,7 +627,7 @@ void GLimp_SetGamma(unsigned short red[256],
                     unsigned short green[256],
                     unsigned short blue[256]) {
 	CGGammaValue redGamma[256], greenGamma[256], blueGamma[256];
-	CGTableCount i;
+	uint32_t i;
 	CGDisplayErr err;
         
 	for (i = 0; i < 256; i++) {
@@ -1451,7 +1451,7 @@ NSDictionary *Sys_GetMatchingDisplayMode( glimpParms_t parms ) {
 		
 		bestModeIndex = modeIndex;
 		if (verbose)
-			common->Printf( " -- OK\n", bestModeIndex);
+			common->Printf( " -- OK\n" );
 	}
 
 	if (verbose)
@@ -1469,7 +1469,7 @@ NSDictionary *Sys_GetMatchingDisplayMode( glimpParms_t parms ) {
 #define MAX_DISPLAYS 128
 
 void Sys_GetGammaTable(glwgamma_t *table) {
-	CGTableCount tableSize = 512;
+	uint32_t tableSize = 512;
 	CGDisplayErr err;
     
 	table->tableSize = tableSize;
@@ -1517,9 +1517,8 @@ void Sys_StoreGammaTables() {
 
 //  This isn't a mathematically correct fade, but we don't care that much.
 void Sys_SetScreenFade(glwgamma_t *table, float fraction) {
-	CGTableCount tableSize;
+	uint32_t tableSize, gammaIndex;
 	CGGammaValue *red, *blue, *green;
-	CGTableCount gammaIndex;
     
 	//    if (!glConfig.deviceSupportsGamma)
 	//        return;
@@ -1664,7 +1663,7 @@ void Sys_UnfadeScreen(CGDirectDisplayID display, glwgamma_t *table) {
 	common->Printf("Unfading display 0x%08x\n", display);
 
 	if (table) {
-		CGTableCount i;
+		uint32_t i;
         
 		common->Printf("Given table:\n");
 		for (i = 0; i < table->tableSize; i++) {

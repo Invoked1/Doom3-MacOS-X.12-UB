@@ -343,6 +343,8 @@ extern void CL_Quit_f(void);
 	Posix_LateInit( );
 
     [NSApp activateIgnoringOtherApps:YES];
+    
+    IN_ActivateMouse();
 
     while (1) {
 #ifdef OMNI_TIMER
@@ -465,7 +467,7 @@ cpuid_t Sys_GetProcessorId( void ) {
 #if defined(__ppc__)
 	cpuid |= CPUID_ALTIVEC;
 #elif defined(__i386__)
-	cpuid |= CPUID_INTEL | CPUID_MMX | CPUID_SSE | CPUID_SSE2 | CPUID_SSE3 | CPUID_HTT | CPUID_CMOV | CPUID_FTZ | CPUID_DAZ;
+	cpuid = (cpuid_t) (cpuid | CPUID_INTEL | CPUID_MMX | CPUID_SSE | CPUID_SSE2 | CPUID_SSE3 | CPUID_HTT | CPUID_CMOV | CPUID_FTZ | CPUID_DAZ);
 #endif
 	return cpuid;
 }

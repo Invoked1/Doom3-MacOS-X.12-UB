@@ -161,8 +161,6 @@ void Sys_InitInput( void ) {
 		distantPast = [ [ NSDate distantPast ] retain ];
 	}
 
-    IN_ActivateMouse();
-
 	inputActive = true;
 }
 
@@ -386,16 +384,25 @@ void processEvent( NSEvent *event ) {
 	eventType = [ event type ];
 
 	switch ( eventType ) {
-		// These four event types are ignored since we do all of our mouse down/up process via the uber-mouse system defined event.	 We have to accept these events however since they get enqueued and the queue will fill up if we don't.
+		// These six event types are ignored since we do all of our mouse down/up process via the uber-mouse system defined event.	 We have to accept these events however since they get enqueued and the queue will fill up if we don't.
 	case NSLeftMouseDown:
 	case NSLeftMouseUp:
+        if ( !mouseActive ) {
+            NSRect contentFrame = [[[event window] contentView] frame];
+
+            if ( [event locationInWindow].y > contentFrame.size.height ) {
+                // user clicked onto the titlebar, doing nothing
+            } else {
+                NSLog( @"Clicked into the application window, capturing mouse." );
+                Sys_DefaultWindowLevel();
+                IN_ActivateMouse();
+            }
+        }
 	case NSRightMouseDown:
 	case NSRightMouseUp:
-        if ( !mouseActive ) {
-            NSLog( @"Clicked into the application window, capturing mouse." );
-            Sys_DefaultWindowLevel();
-            IN_ActivateMouse();
-        }
+    case NSOtherMouseDown:
+    case NSOtherMouseUp:
+        //NSLog( @"ignore simple mouse event %@", event );
 		return;
 	case NSMouseMoved:
 	case NSLeftMouseDragged:
@@ -403,6 +410,11 @@ void processEvent( NSEvent *event ) {
         processMouseMovedEvent( event );
 		return;
 	case NSKeyDown:
+        // Send ALL command key-ups to Quake, but not command key-downs, otherwise if the user hits a key, presses command, and lets up on the key, the key-up won't register.
+        if ( [ event modifierFlags ] & NSCommandKeyMask ) {
+            NSLog( @"command key up ignored: %@", event );
+            break;
+        }
 	case NSKeyUp:
 		OSX_ProcessKeyEvent( event, eventType == NSKeyDown );
 		return;
@@ -506,7 +518,7 @@ void IN_ActivateMouse( void ) {
         // Make sure that if window moved we don't hose the user...
         Sys_UpdateWindowMouseInputRect();
     }
-//    Sys_LockMouseInInputRect( inputRect );
+    Sys_LockMouseInInputRect( inputRect );
     CGDisplayHideCursor( Sys_DisplayToUse() );
     mouseActive = true;
 }
