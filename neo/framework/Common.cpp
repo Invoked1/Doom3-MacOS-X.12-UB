@@ -2638,7 +2638,15 @@ void idCommonLocal::LoadGameDLL( void ) {
 	gameExport_t	gameExport;
 	GetGameAPI_t	GetGameAPI;
 
-	fileSystem->FindDLL( "game", dllPath, true );
+    const char *fs_game = cvarSystem->GetCVarString( "fs_game" );
+
+    // try to find the DLL for the currently active game
+	fileSystem->FindDLL( fs_game, dllPath, true );
+
+    // if that doesn't work, fall back to the default DLL
+    if ( !dllPath[ 0 ] ) {
+        fileSystem->FindDLL( "game", dllPath, true );
+    }
 
 	if ( !dllPath[ 0 ] ) {
 		common->FatalError( "couldn't find game dynamic library" );
