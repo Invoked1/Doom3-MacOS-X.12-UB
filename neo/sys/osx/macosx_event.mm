@@ -161,6 +161,8 @@ void Sys_InitInput( void ) {
 		distantPast = [ [ NSDate distantPast ] retain ];
 	}
 
+    IN_ActivateMouse();
+
 	inputActive = true;
 }
 
@@ -475,6 +477,8 @@ void Sys_PreventMouseMovement( CGPoint point ) {
     if ( err != CGEventNoErr ) {
         common->Error( "Could not disable mouse movement, CGWarpMouseCursorPosition returned %d\n", err );
     }
+
+    CGDisplayHideCursor( kCGDirectMainDisplay );
 }
 
 void Sys_ReenableMouseMovement() {
@@ -486,7 +490,7 @@ void Sys_ReenableMouseMovement() {
         common->Error( "Could not reenable mouse movement, CGAssociateMouseAndMouseCursorPosition returned %d\n", err );
     }
 
-    // Leave the mouse where it was -- don't warp here.
+    CGDisplayShowCursor( Sys_DisplayToUse() );
 }
 
 void Sys_LockMouseInInputRect(CGRect rect) {
@@ -504,22 +508,17 @@ void Sys_LockMouseInInputRect(CGRect rect) {
 void Sys_SetMouseInputRect(CGRect newRect) {
     inputRectValid = YES;
     inputRect = newRect;
-
-    if ( mouseActive ) {
-        Sys_LockMouseInInputRect( inputRect );
-	}
 }
 
 void IN_ActivateMouse( void ) {
     if ( mouseActive ) {
         return;
     }
-    if ( inputRectValid ) {
-        // Make sure that if window moved we don't hose the user...
-        Sys_UpdateWindowMouseInputRect();
-    }
+    
+    Sys_UpdateWindowMouseInputRect();
+    Sys_SetMouseInputRect( inputRect );
     Sys_LockMouseInInputRect( inputRect );
-    CGDisplayHideCursor( Sys_DisplayToUse() );
+    
     mouseActive = true;
 }
 
@@ -527,8 +526,9 @@ void IN_DeactivateMouse( void ) {
     if ( !mouseActive ) {
         return;
     }
+    
     Sys_ReenableMouseMovement();
-    CGDisplayShowCursor( Sys_DisplayToUse() );
+    
     mouseActive = false;
 }
 

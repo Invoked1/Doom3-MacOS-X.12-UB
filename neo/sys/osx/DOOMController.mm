@@ -342,10 +342,6 @@ extern void CL_Quit_f(void);
 
 	Posix_LateInit( );
 
-    [NSApp activateIgnoringOtherApps:YES];
-    
-    IN_ActivateMouse();
-
     while (1) {
 #ifdef OMNI_TIMER
         OTPeriodicTimerReset();
@@ -413,7 +409,9 @@ Sys_EXEPath
 */
 const char *Sys_EXEPath( void ) {
 	static char exepath[ 1024 ];
-	strncpy( exepath, [ [ [ NSBundle mainBundle ] bundlePath ] cString ], 1024 );
+	strncpy( exepath, [ [ [ NSBundle mainBundle ] resourcePath ] cString ], 1024 );
+    // caller chops the last part off since it expects it to be the executable
+    strncat( exepath, "/dummy", 1024);
 	return exepath;
 }
 

@@ -2180,6 +2180,9 @@ idRenderSystemLocal::Shutdown
 void idRenderSystemLocal::Shutdown( void ) {	
 	common->Printf( "idRenderSystem::Shutdown()\n" );
 
+    // release input
+	Sys_ShutdownInput();
+
 	R_DoneFreeType( );
 
 	if ( glConfig.isInitialized ) {

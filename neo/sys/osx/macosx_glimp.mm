@@ -225,25 +225,12 @@ static NSOpenGLPixelFormatAttribute *GetPixelAttributes( unsigned int multisampl
 	return pixelAttributes;
 }
 
-void Sys_UpdateWindowMouseInputRect(void) {		
-	NSRect           windowRect, screenRect;
-	NSScreen        *screen;
-
-	/*
-
-	// TTimo - I guess glw_state.window is bogus .. getting crappy data out of this
-
-	// It appears we need to flip the coordinate system here.  This means we need
-	// to know the size of the screen.
-	screen = [glw_state.window screen];
-	screenRect = [screen frame];
-	windowRect = [glw_state.window frame];
-	windowRect.origin.y = screenRect.size.height - (windowRect.origin.y + windowRect.size.height);
-
-	Sys_SetMouseInputRect( CGRectMake( windowRect.origin.x, windowRect.origin.y, windowRect.size.width, windowRect.size.height ) );
-	*/
-
+void Sys_UpdateWindowMouseInputRect(void) {
 	Sys_SetMouseInputRect( CGDisplayBounds( glw_state.display ) );
+
+    /* if we don't set this again and again, we sometimes don't get mouse
+       movements anymore after re-enabling input */
+    [glw_state.window setAcceptsMouseMovedEvents: YES];
 }							
 
 // This is needed since CGReleaseAllDisplays() restores the gamma on the displays and we want to fade it up rather than just flickering all the displays
