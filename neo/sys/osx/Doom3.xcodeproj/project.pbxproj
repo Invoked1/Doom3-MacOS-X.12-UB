@@ -14,6 +14,8 @@
 		271CE2831587B8F80029E1E3 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271CE2821587B8F80029E1E3 /* OpenAL.framework */; };
 		271CE2851587B9040029E1E3 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271CE2841587B9040029E1E3 /* CoreAudio.framework */; };
 		65552D1115CED72E00E195EA /* libidlib_nopic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 812259820912BF1D005D34B9 /* libidlib_nopic.a */; };
+		6578C2B115D6CABF00867FFD /* game.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 81225B8B0912C731005D34B9 /* game.dylib */; };
+		6578C2B415D80B2C00867FFD /* d3xp.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 6578C29015D580CA00867FFD /* d3xp.dylib */; };
 		812258110912BC79005D34B9 /* snd_efxfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8122565F0912BC78005D34B9 /* snd_efxfile.cpp */; };
 		812258120912BC79005D34B9 /* GEWindowWrapper_stub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812256620912BC78005D34B9 /* GEWindowWrapper_stub.cpp */; };
 		812258130912BC79005D34B9 /* edit_stub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812256630912BC79005D34B9 /* edit_stub.cpp */; };
@@ -766,7 +768,7 @@
 		6578C28815D580CA00867FFD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6578C29015D580CA00867FFD /* game.dylib */,
+				6578C29015D580CA00867FFD /* d3xp.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1379,11 +1381,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		6578C29015D580CA00867FFD /* game.dylib */ = {
+		6578C29015D580CA00867FFD /* d3xp.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = game.dylib;
-			path = "game-d3xp.dylib";
+			path = d3xp.dylib;
 			remoteRef = 6578C28F15D580CA00867FFD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1428,6 +1429,8 @@
 				81225A000912C27D005D34B9 /* Doom3.icns in Resources */,
 				81225A0D0912C2D3005D34B9 /* ASLCore.nib in Resources */,
 				81225A100912C2E9005D34B9 /* Localizable.strings in Resources */,
+				6578C2B115D6CABF00867FFD /* game.dylib in Resources */,
+				6578C2B415D80B2C00867FFD /* d3xp.dylib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
