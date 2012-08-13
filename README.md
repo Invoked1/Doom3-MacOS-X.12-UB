@@ -1,4 +1,4 @@
-= Doom 3 for MacOS X.8
+# Doom 3 for MacOS X.8
 
 I started this fork because I wanted to play Doom 3 on my Mountain Lion installation and couldn't
 find a working binary or source port.
@@ -32,7 +32,7 @@ Fixes so far:
 
 I'll try to continue fixing any issue I encounter while playing through the game...
 
-= Installation and configuration notes
+## Installation and configuration notes
 
 When building the game, make sure you actually build the "Release" build, as the "Debug" build tends
 to be quite slow.
