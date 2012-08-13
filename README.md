@@ -7,7 +7,7 @@ Fixes so far:
 
 - Fullscreen support.
 
-  This was completely broken in more recent versions of MacOS. I also fixes some problems I had
+  This was completely broken in more recent versions of MacOS. I also fixed some problems I had
   when switching to different applications. The Command key can be used to release the mouse cursor.
   If you hit Command+Tab while in fullscreen mode, the game window will move into the background
   (but stays visible!) while other applications are active. When you click back into the game window,
@@ -21,7 +21,7 @@ Fixes so far:
   Both shared libs are compiled and included in the app bundle. A different dylib is loaded, based on
   the "fs_game" variable. You can also switch to the expansion in-game.
 
-- Better behaviour when launching in quitting the application.
+- Better behaviour when launching and quitting the application.
 
   On launch, Doom 3 doesn't jump into the foreground when you're still using other apps. When quitting,
   the input subsystem is properly destroyed, releasing the mouse cursor.
