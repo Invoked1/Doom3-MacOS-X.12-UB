@@ -1,6 +1,6 @@
 # Doom 3 for MacOS X.12-UB
 
-Hi-bred of FABIAN and MnM's. Tweaking/re-working both their codes to make a universal build that compiles on XCode 9.2, Mac OS 10.X+ (Mac OS Sierra 10.12.6 - tested), with d3xp mod, and other tweaks. Fun times - 
+Hi-bred of FABIEN's and MnM's. Tweaking/re-working both their codes to make a universal build that compiles on XCode 9.2, Mac OS 10.X+ (Mac OS Sierra 10.12.6 - tested), with d3xp mod, and other tweaks. Fun times - 
 
 I started this fork because I wanted to play Doom 3 on my Mountain Lion installation and couldn't
 find a working binary or source port.
